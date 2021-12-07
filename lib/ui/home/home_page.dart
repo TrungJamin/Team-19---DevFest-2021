@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:devfest_2021/consts/my_colors.dart';
 import 'package:devfest_2021/router/router.gr.dart';
 import 'package:devfest_2021/ui/components/app_text.dart';
 import 'package:devfest_2021/ui/components/image/my_network_image.dart';
 import 'package:devfest_2021/ui/components/loading/container_with_loading.dart';
+import 'package:devfest_2021/ui/components/loading/loading.dart';
 import 'package:devfest_2021/ui/home/photos_view_model.dart';
 import 'package:devfest_2021/ui/hook/use_router.dart';
 import 'package:devfest_2021/ultilize/screen_size.dart';
@@ -84,6 +86,7 @@ class _HomePageState extends State<HomePage> {
             .whileLoading(() => homeViewModel.fetchPhotos(pageKey: "1"));
       }, [photos?.toString()]),
     );
+    final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
 
     return SafeArea(
       child: Scaffold(
@@ -166,9 +169,35 @@ class _HomePageState extends State<HomePage> {
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(16),
-                                          child: MyNetworkImage(
-                                            url: photo.src!.original!,
-                                            fit: BoxFit.fill,
+                                          child: CachedNetworkImage(
+                                            filterQuality: FilterQuality.medium,
+                                            imageUrl: photo.src!.original!,
+                                            memCacheHeight:
+                                                (300 * devicePixelRatio)
+                                                    .round(),
+                                            memCacheWidth:
+                                                (300 * devicePixelRatio)
+                                                    .round(),
+                                            maxWidthDiskCache:
+                                                (300 * devicePixelRatio)
+                                                    .round(),
+                                            imageBuilder:
+                                                (context, imageProvider) =>
+                                                    Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                                image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) =>
+                                                const Loading(),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(Icons.error),
                                           ),
                                         ),
                                       );

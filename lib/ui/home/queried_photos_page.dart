@@ -88,6 +88,7 @@ class QueriedPhotosPage extends HookWidget {
                                           borderRadius:
                                               BorderRadius.circular(16),
                                           child: CachedNetworkImage(
+                                            filterQuality: FilterQuality.medium,
                                             imageUrl: photo.src!.original!,
                                             memCacheHeight:
                                                 (300 * devicePixelRatio)

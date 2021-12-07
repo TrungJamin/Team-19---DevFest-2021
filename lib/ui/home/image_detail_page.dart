@@ -24,6 +24,7 @@ class ImageDetailPage extends HookWidget {
         body: Stack(
           children: [
             CachedNetworkImage(
+              filterQuality: FilterQuality.medium,
               memCacheHeight: (300 * devicePixelRatio).round(),
               memCacheWidth: (300 * devicePixelRatio).round(),
               imageUrl: photo!.src!.large2x!,
