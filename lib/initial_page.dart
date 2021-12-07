@@ -25,9 +25,9 @@ class _InitialPageState extends State<InitialPage> {
 
     return AutoTabsScaffold(
       homeIndex: 0,
-      appBarBuilder: (context, tabsRouter) {
-        return AppBar();
-      },
+      // appBarBuilder: (context, tabsRouter) {
+      //   return AppBar();
+      // },
       routes: const [
         HomeTab(),
         SearchTab(),
@@ -43,6 +43,7 @@ class _InitialPageState extends State<InitialPage> {
     return hideBottomNav
         ? const SizedBox.shrink()
         : ConvexAppBar(
+            backgroundColor: Colors.black,
             initialActiveIndex: tabsRouter.activeIndex,
             onTap: tabsRouter.setActiveIndex,
             // style: TabStyle.fixed,

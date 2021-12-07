@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:devfest_2021/ui/auth/login/login_page.dart';
 import 'package:devfest_2021/ui/auth/sign_up/sign_up_page.dart';
+import 'package:devfest_2021/ui/home/image_detail_page.dart';
+import 'package:devfest_2021/ui/home/queried_photos_page.dart';
 import 'package:devfest_2021/ui/home/routes.dart';
 import 'package:devfest_2021/ui/search/routes.dart';
 import 'package:devfest_2021/ui/user/routes.dart';
@@ -28,6 +30,14 @@ import '../initial_page.dart';
     AutoRoute<String>(
       page: SignUpPage,
       path: "/signUp",
+    ),
+    AutoRoute<String>(
+      page: ImageDetailPage,
+      path: "/image_detail",
+    ),
+    AutoRoute<String>(
+      page: QueriedPhotosPage,
+      path: "/queried_photos_page",
     ),
   ],
 )

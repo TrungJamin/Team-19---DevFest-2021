@@ -18,7 +18,11 @@ void main() {
   }
 
   runZonedGuarded(() {
-    runApp(ProviderScope(child: MyApp()));
+    runApp(
+      ProviderScope(
+        child: MyApp(),
+      ),
+    );
   }, (error, stackTrace) {});
 }
 
@@ -36,18 +40,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Open Sans',
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.black,
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        // appBarTheme: AppBarTheme(
-        //   color: MyColors.nileBlue,
-        //   iconTheme: IconThemeData(color: Colors.white),
-        // ),
-        // textTheme: Theme.of(context).textTheme.apply(
-        //       fontFamily: 'Open Sans',
-        //       bodyColor: Colors.white,
-        //     ),
+        appBarTheme: const AppBarTheme(
+          color: Colors.black,
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: 'Open Sans',
+              bodyColor: Colors.white,
+            ),
       ),
       routerDelegate: _rootRouter.delegate(),
       routeInformationProvider: _rootRouter.routeInfoProvider(),
