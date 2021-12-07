@@ -30,4 +30,12 @@ class PhotosRepositoryImpl implements PhotosRepository {
           accessToken: Constants.instance.apiKey, query: query),
     );
   }
+
+  @override
+  Future<Result<PhotoList>> getPhotosBySearching({required String query}) {
+    return Result.guardFuture<PhotoList>(
+      () async => await _dataSource.getPhotosBySearching(
+          accessToken: Constants.instance.apiKey, query: query),
+    );
+  }
 }

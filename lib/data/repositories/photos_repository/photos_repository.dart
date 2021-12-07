@@ -4,4 +4,5 @@ import 'package:devfest_2021/data/models/result/result.dart';
 abstract class PhotosRepository {
   Future<Result<PhotoList>> getPhotos({required String pageKey});
   Future<Result<PhotoList>> getPhotosByQuery({required String query});
+  Future<Result<PhotoList>> getPhotosBySearching({required String query});
 }

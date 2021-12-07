@@ -20,10 +20,14 @@ class PhotosViewModel extends ChangeNotifier {
 
   Result<PhotoList>? get photos => _photos;
 
-  // Result use case No.1
   Result<PhotoList>? _queriedPhotos;
 
   Result<PhotoList>? get queriedPhotos => _queriedPhotos;
+
+  Result<PhotoList>? _searchPhotos;
+
+  Result<PhotoList>? get searchPhotos => _searchPhotos;
+
   Future<void> fetchPhotos({required String pageKey}) {
     return _repository
         .getPhotos(pageKey: pageKey) // Future<Result<Photos>>
@@ -35,6 +39,16 @@ class PhotosViewModel extends ChangeNotifier {
     return _repository
         .getPhotosByQuery(query: query) // Future<Result<Photos>>
         .then((value) => _queriedPhotos = value) // Result<Photos>
+        .whenComplete(notifyListeners)
+        .catchError((onError) {
+      print("ERROR: ${onError.toString()}");
+    });
+  }
+
+  Future<void> fetchPhotosBySearching({required String query}) {
+    return _repository
+        .getPhotosBySearching(query: query) // Future<Result<Photos>>
+        .then((value) => _searchPhotos = value) // Result<Photos>
         .whenComplete(notifyListeners)
         .catchError((onError) {
       print("ERROR: ${onError.toString()}");
