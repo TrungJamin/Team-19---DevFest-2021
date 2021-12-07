@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                                       final photo = data.photos![index];
                                       return GestureDetector(
                                         onTap: () {
-                                          router.navigate(
+                                          router.push(
                                               ImageDetailRoute(photo: photo));
                                         },
                                         child: ClipRRect(

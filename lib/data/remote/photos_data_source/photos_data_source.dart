@@ -29,7 +29,15 @@ abstract class PhotosDataSource {
     @Header("accept") String? accept = "*/*",
     @Header("Authorization") required String accessToken,
     @Query("query") required String query,
-    @Query("per_page") String? perpage = "8",
+    @Query("per_page") String? perpage = "50",
     @Query("page") String? page = "1",
+  });
+  @GET("/v1/search")
+  Future<PhotoList> getPhotosBySearching({
+    @Header("accept") String? accept = "*/*",
+    @Header("Authorization") required String accessToken,
+    @Query("query") required String query,
+    @Query("per_page") String? perpage = "80",
+    @Query("page") String? page = "2",
   });
 }

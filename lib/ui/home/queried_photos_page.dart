@@ -45,13 +45,15 @@ class QueriedPhotosPage extends HookWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: designHeight(15),
+                ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: const EdgeInsets.only(left: 20, bottom: 15),
                   child: AppText(
                     "$query",
-                    fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    fontSize: 25,
                   ),
                 ),
                 Column(
@@ -72,7 +74,7 @@ class QueriedPhotosPage extends HookWidget {
                                 child: Container(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 4),
-                                  height: designHeight(1500),
+                                  height: designHeight(800),
                                   child: StaggeredGridView.countBuilder(
                                     crossAxisCount: 4,
                                     itemCount: data.photos!.length,
@@ -81,7 +83,7 @@ class QueriedPhotosPage extends HookWidget {
                                       final photo = data.photos![index];
                                       return GestureDetector(
                                         onTap: () {
-                                          router.navigate(
+                                          router.push(
                                               ImageDetailRoute(photo: photo));
                                         },
                                         child: ClipRRect(
