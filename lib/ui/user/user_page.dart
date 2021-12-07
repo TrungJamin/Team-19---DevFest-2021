@@ -14,6 +14,7 @@ class UserPage extends StatelessWidget {
       child: Builder(
         builder: (context) => MaterialApp(
           title: 'User Profile',
+          debugShowCheckedModeBanner: false,
           theme: new ThemeData(scaffoldBackgroundColor: Colors.black),
           home: ProfilePage(),
         ),
